@@ -11,7 +11,7 @@ Alternatively, the primary ZMK and Zephyr tools can be fetched and used to local
 $ cd /path/to/zmk/source/repo/zmk
 $ source .venv/bin/activate
 $ cd app
-$ west build -d build/left -b nice_nano_v2 -- -DSHIELD=lily58_left -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
+$ west build -d build/left -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD=lily58_left -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config" -DCONFIG_ZMK_STUDIO=y
 $ west build -d build/right -b nice_nano_v2 -- -DSHIELD=lily58_right -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
 ```
 
