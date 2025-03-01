@@ -20,6 +20,9 @@ As an additional note, the path to this repo in the west build command must be a
 ## Flashing Keyboard halves
 After having built your configuration, either via Github actions or locally, you'll end up with a left and a right `.uf2` file, you'll plug in a keyboard half, doucle-click the reset button to enter the bootloader mode (or press a software-mapped bootloader button) and copy the corresponding `uf2` file to the `NICE_NANO` USB drive that shows up.
 
+## Iterating the Keymap
+The available keycodes and assorted system calls can be found the ZMK website. There are many different groups of keycodes and system calls you may want to add, [standard keycodes](https://zmk.dev/docs/keymaps/list-of-keycodes) get paired with a leader of `&kp`, while the [RGB Underglow commands](https://zmk.dev/docs/keymaps/behaviors/underglow) get paired with `rgb_ug`. By navigating the ZMK documentation, you ought to be able to find whatever keycodes you need.
+
 ## Configuring a New Keyboard
 Follow the instructions from [ZMK](https://zmk.dev/docs/user-setup), this repo was configured by selecting 44:Lily58, 10:nice_nano_v2, and copying in the stock keymap to begin customizations.
 
