@@ -8,7 +8,9 @@ Configurations can be built using GitHub actions that are run upon pushing a com
 Alternatively, the primary ZMK and Zephyr tools can be fetched and used to locally build a keyboard configuration. This process can be done by following the [zmk native setup](https://zmk.dev/docs/development/local-toolchain/setup/native) documentation. Which inculded installing `cmake`, `python`, `dtc`, and `zephyr-sdk` using the system package manager. After cloning the zmk repo and running through the whole setup process, a specific keyboard configuration can then be built by developing the correct [cmake/west command](https://zmk.dev/docs/development/local-toolchain/build-flash?build-opts=addonMcu). For example, to build this keyboard you may use a pair of commands like the following:
 
 ```
-$ cd /path/to/zmk/source/repo/zmk/app
+$ cd /path/to/zmk/source/repo/zmk
+$ source .venv/bin/activate
+$ cd app
 $ west build -d build/left -b nice_nano_v2 -- -DSHIELD=lily58_left -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
 $ west build -d build/right -b nice_nano_v2 -- -DSHIELD=lily58_right -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
 ```
