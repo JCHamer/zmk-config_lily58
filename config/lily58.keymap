@@ -29,13 +29,13 @@
 // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
 // |   \|  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//                     | ALT  | CTRL | SPACE| TOG_NUM|  |  GUI  | ENTER| BSPC  |HOLD_FN|
+//                     |TOGNUM|  ALT | CTRL |  SPACE |  | ENTER | BSPC |WINDOWS|HOLD_FN|
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3   &kp N4    &kp N5                         &kp N6  &kp N7   &kp N8    &kp N9  &kp N0   &kp EQUAL
-&kp TAB   &kp Q  &kp W  &kp E    &kp R     &kp T                          &kp Y   &kp U    &kp I     &kp O   &kp P    &kp MINUS
-&kp BSLH  &kp A  &kp S  &kp D    &kp F     &kp G                          &kp H   &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X  &kp C    &kp V     &kp B     &kp LBKT    &kp RBKT &kp N   &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                        &kp LALT &kp LCTRL &kp SPACE &tog NPAD   &kp LGUI &kp RET &kp BSPC &mo FUNC
+&kp ESC   &kp N1 &kp N2 &kp N3    &kp N4   &kp N5                          &kp N6   &kp N7   &kp N8    &kp N9  &kp N0   &kp EQUAL
+&kp TAB   &kp Q  &kp W  &kp E     &kp R    &kp T                           &kp Y    &kp U    &kp I     &kp O   &kp P    &kp MINUS
+&kp BSLH  &kp A  &kp S  &kp D     &kp F    &kp G                           &kp H    &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X  &kp C     &kp V    &kp B     &kp LBKT    &kp RBKT  &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                        &tog NPAD &kp LALT &kp LCTRL &kp SPACE   &kp ENTER &kp BSPC &kp LGUI &mo FUNC
             >;
         };
 
@@ -44,7 +44,7 @@
 // ------------------------------------------------------------------------------------------------------------
 // |       |     |     |      |      |      |                   |      |NUMLOCK|   /   |  *   |  -    |       |
 // |       |     |HOME |  UP  | END  | PgUp |                   |      |   7   |   8   |  9   |  +    |       |
-// |       |     |LEFT | DOWN | RIGHT|      |                   |      |   4   |   5   |  6   | ENTER |       |
+// |       |     |LEFT | DOWN | RIGHT|      |                   |TG_FUN|   4   |   5   |  6   | ENTER |       |
 // |       |     |     |      |      | PgDn |        |  |       |      |   1   |   2   |  3   |  .    |       |
 //                     |      |      |      |        |  |       |      |       |   0   |
             bindings = <
@@ -68,7 +68,7 @@
 &kp GRAVE &kp F1        &kp F2   &kp F3   &kp F4       &kp F5                      &kp F6    &kp F7        &kp F8       &kp F9      &kp F10   &kp F11
 &trans    &kp C_BRI_INC &kp HOME &kp UP   &kp END      &kp PG_UP                   &trans    &trans        &kp C_VOL_UP &trans      &trans    &kp F12
 &kp CLCK  &trans        &kp LEFT &kp DOWN &kp RIGHT    &trans                      &kp PSCRN &kp C_AL_CALC &kp C_MUTE   &kp C_EJECT &trans    &trans
-&trans    &kp C_BRI_DEC &trans   &trans   &trans       &kp PG_DN &trans   &trans   &trans    &to KBCTRL    &kp C_VOL_DN &kp LBRC    &kp RALT  &kp RCTRL
+&trans    &kp C_BRI_DEC &trans   &trans   &trans       &kp PG_DN &trans   &trans   &trans    &to KBCTRL    &kp C_VOL_DN &kp RALT    &kp RCTRL &trans
                                  &trans   &trans       &trans    &trans   &kp RGUI &trans    &trans        &trans
             >;
         };
@@ -82,11 +82,11 @@
 // |SYS_RST|     |     |      |      |      |        |  |       |      | HUE-  | SAT-  | BRI- | SPD-  |SYS_RST|
 //                     |      |      |      |        |  |       |      |       |TO_QWER|
             bindings = <
-&bootloader &trans           &trans            &trans            &trans       &trans                       &trans         &trans          &trans          &trans          &trans          &bootloader
-&bt BT_CLR  &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3 &bt BT_SEL 4                 &trans         &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &trans
-&trans      &trans           &trans            &trans            &trans       &trans                       &studio_unlock &rgb_ug RGB_EFR &rgb_ug RGB_TOG &rgb_ug RGB_EFF &trans          &trans
-&sys_reset  &trans           &trans            &trans            &trans       &trans    &trans   &trans    &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &sys_reset
-                                               &trans            &trans       &trans    &trans   &trans    &trans         &trans          &to QWERTY
+&bootloader &trans       &trans       &trans       &trans       &trans                    &trans         &trans          &trans          &trans          &trans          &bootloader
+&bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4              &trans         &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &trans
+&trans      &trans       &trans       &trans       &trans       &trans                    &studio_unlock &rgb_ug RGB_EFR &rgb_ug RGB_TOG &rgb_ug RGB_EFF &trans          &trans
+&sys_reset  &trans       &trans       &trans       &trans       &trans    &trans   &trans &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &sys_reset
+                                      &trans       &trans       &trans    &trans   &trans &trans         &trans          &to QWERTY
             >;
         };
     };
