@@ -10,12 +10,16 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #define QWERTY 0
-#define NPAD   1
-#define FUNC   2
+#define FUNC   1
+#define NPAD   2
 #define KBCTRL 3
 
 &led_strip {
 	chain-length = <35>;
+};
+
+&lt {
+	tapping-term-ms = <200>;
 };
 
 / {
@@ -24,18 +28,35 @@
 
         default_layer {
 			display-name="QWERTY";
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   =+  |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
-// |   \|  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//                     |TOGNUM|  ALT | CTRL |  SPACE |  | ENTER | BSPC |WINDOWS|HOLD_FN|
+// -----------------------------------------------------------------------------------------------------------------
+// |LT(FUNC,ESC)|  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   =+  |
+// |  TAB       |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
+// |   \|       |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
+// | SHIFT      |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+//                          |TOGNUM|  ALT | CTRL |  SPACE |  |  BSPC | ENTER|WINDOWS|TOGFUNC|
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3    &kp N4   &kp N5                          &kp N6   &kp N7   &kp N8    &kp N9  &kp N0   &kp EQUAL
-&kp TAB   &kp Q  &kp W  &kp E     &kp R    &kp T                           &kp Y    &kp U    &kp I     &kp O   &kp P    &kp MINUS
-&kp BSLH  &kp A  &kp S  &kp D     &kp F    &kp G                           &kp H    &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X  &kp C     &kp V    &kp B     &kp LBKT    &kp RBKT  &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                        &tog NPAD &kp LALT &kp LCTRL &kp SPACE   &kp ENTER &kp BSPC &kp LGUI &mo FUNC
+&lt FUNC ESC &kp N1 &kp N2 &kp N3    &kp N4   &kp N5                         &kp N6    &kp N7   &kp N8    &kp N9  &kp N0   &kp EQUAL
+&kp TAB      &kp Q  &kp W  &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp MINUS
+&kp BSLH     &kp A  &kp S  &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+&kp LSHFT    &kp Z  &kp X  &kp C     &kp V    &kp B     &kp LBKT    &kp RBKT &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                           &tog NPAD &kp LALT &kp LCTRL &kp SPACE   &kp BSPC &kp ENTER &kp LGUI &tog FUNC
+            >;
+        };
+
+        function_layer {
+			display-name="Function";
+// ------------------------------------------------------------------------------------------------------------
+// |  `~   |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
+// |       |DsBr+|HOME |  UP  |  END | PgUp |                   |      |       | VOL+  |      |       |  F12  |
+// | CAPSLK|     |LEFT | DOWN | RIGHT|      |                   |PrtScr| CALC  |  MUTE | EJECT|       |       |
+// |       |DsBr-|     |      |      | PgDn |        |  |       |      |TO_CTRL| VOL-  | RALT | RCTRL |       |
+//                     |      |      |      |        |  | DELETE|      | RGUI  |       |
+            bindings = <
+&kp GRAVE &kp F1        &kp F2   &kp F3   &kp F4       &kp F5                     &kp F6    &kp F7        &kp F8       &kp F9      &kp F10   &kp F11
+&trans    &kp C_BRI_INC &kp HOME &kp UP   &kp END      &kp PG_UP                  &trans    &trans        &kp C_VOL_UP &trans      &trans    &kp F12
+&kp CLCK  &trans        &kp LEFT &kp DOWN &kp RIGHT    &trans                     &kp PSCRN &kp C_AL_CALC &kp C_MUTE   &kp C_EJECT &trans    &trans
+&trans    &kp C_BRI_DEC &trans   &trans   &trans       &kp PG_DN &trans   &trans  &trans    &to KBCTRL    &kp C_VOL_DN &kp RALT    &kp RCTRL &trans
+                                 &trans   &trans       &trans    &trans   &kp DEL &trans    &kp RGUI      &trans
             >;
         };
 
@@ -53,23 +74,6 @@
 &trans &trans &kp LEFT &kp DOWN &kp RIGHT &trans                       &trans &kp KP_N4   &kp KP_N5     &kp KP_N6       &kp KP_ENTER &trans
 &trans &trans &trans   &trans   &trans    &kp PG_DN &trans   &trans    &trans &kp KP_N1   &kp KP_N2     &kp KP_N3       &kp KP_DOT   &trans
                        &trans   &trans    &trans    &trans   &trans    &trans &trans      &kp KP_N0
-            >;
-        };
-
-        function_layer {
-			display-name="Function";
-// ------------------------------------------------------------------------------------------------------------
-// |  `~   |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-// |       |DsBr+|HOME |  UP  |  END | PgUp |                   |      |       | VOL+  |      |       |  F12  |
-// | CAPSLK|     |LEFT | DOWN | RIGHT|      |                   |PrtScr| CALC  |  MUTE | EJECT|       |       |
-// |       |DsBr-|     |      |      | PgDn |        |  |       |      |TO_CTRL| VOL-  | RALT | RCTRL |       |
-//                     |      |      |      |        |  | RGUI  |      |       |       |
-            bindings = <
-&kp GRAVE &kp F1        &kp F2   &kp F3   &kp F4       &kp F5                      &kp F6    &kp F7        &kp F8       &kp F9      &kp F10   &kp F11
-&trans    &kp C_BRI_INC &kp HOME &kp UP   &kp END      &kp PG_UP                   &trans    &trans        &kp C_VOL_UP &trans      &trans    &kp F12
-&kp CLCK  &trans        &kp LEFT &kp DOWN &kp RIGHT    &trans                      &kp PSCRN &kp C_AL_CALC &kp C_MUTE   &kp C_EJECT &trans    &trans
-&trans    &kp C_BRI_DEC &trans   &trans   &trans       &kp PG_DN &trans   &trans   &trans    &to KBCTRL    &kp C_VOL_DN &kp RALT    &kp RCTRL &trans
-                                 &trans   &trans       &trans    &trans   &kp RGUI &trans    &trans        &trans
             >;
         };
 
