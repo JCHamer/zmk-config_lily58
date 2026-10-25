@@ -11,8 +11,8 @@ Alternatively, the primary ZMK and Zephyr tools can be fetched and used to local
 $ cd /path/to/zmk/source/repo/zmk
 $ source .venv/bin/activate
 $ cd app
-$ west build -d build/left -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD=lily58_left -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config" -DCONFIG_ZMK_STUDIO=y
-$ west build -d build/right -b nice_nano_v2 -- -DSHIELD=lily58_right -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
+$ west build -d build/left -b nice_nano//zmk -S studio-rpc-usb-uart -- -DSHIELD=lily58_left -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config" -DCONFIG_ZMK_STUDIO=y
+$ west build -d build/right -b nice_nano//zmk -- -DSHIELD=lily58_right -DZMK_CONFIG="/path/to/this/repo/zmk-config_lily58/config"
 ```
 
 As an additional note, the path to this repo in the west build command must be a complete path, `~/` cannot be used. If needed, these commands can also be run with the `-p` flag in order to run a "pristine" build that will clean out the build dir first.
